@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import defaultProfile from "../assets/profile.jpg";
 
-const API_BASE = "http://localhost:8000/api/users";
+const API_BASE = "/api/users"; // ✅ relative path
 
 export default function EditUser() {
   const { id } = useParams();

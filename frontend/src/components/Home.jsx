@@ -3,7 +3,7 @@ import axios from "axios";
 import defaultProfile from "../assets/profile.jpg";
 import { useNavigate } from "react-router-dom";
 
-const API_BASE = "http://localhost:8000/api/users";
+const API_BASE = "/api/users"; // ✅ relative path
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
