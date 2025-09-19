@@ -8,10 +8,11 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon backend/index.js",
-    "build" : "npm install && npm install --prefix frontend && npm run build --prefix frontend",
-    "start" : "nodemon backend/index.js"
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
+    "start": "nodemon backend/index.js"
   },
   "dependencies": {
+    "@vitejs/plugin-react": "^5.0.3",
     "cloudinary": "^1.41.3",
     "cors": "^2.8.5",
     "csv-writer": "^1.6.0",
@@ -21,6 +22,9 @@
     "multer": "^2.0.2",
     "multer-storage-cloudinary": "^4.0.0",
     "nodemon": "^3.1.10",
-    "serverless-http": "^4.0.0"
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "serverless-http": "^4.0.0",
+    "vite": "^7.1.6"
   }
 }
