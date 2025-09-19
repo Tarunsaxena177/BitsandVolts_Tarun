@@ -9,23 +9,41 @@ import fs from "fs";
 dotenv.config();
 
 const app = express();
+const __dirname = path.resolve(); // ✅ correct way in ES modules
 
-
+// Ensure uploads folder exists
 const uploadsDir = path.join(process.cwd(), "uploads");
 if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
 
-
-app.use(cors());
+// Middleware
+app.use(cors({
+  origin: process.env.FRONTEND_URL || "http://localhost:3000",
+  credentials: true
+}));
 app.use(express.json());
 app.use("/uploads", express.static(uploadsDir));
 
 
 app.use("/api/users", userRoutes);
 
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "frontend", "dist")));
+
+  app.get("/*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+  });
+} else {
+  app.get("/", (req, res) => {
+    res.send("API is running...");
+  });
+}
+
+
 const PORT = process.env.PORT || 8000;
 connectDB()
   .then(() => {
-    app.listen(PORT, () => console.log(`Server runing on port ${PORT}`));
+    app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
   })
   .catch((err) => {
     console.error("Startup error:", err);
