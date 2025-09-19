@@ -11,7 +11,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api": "https://bitsandvolts-tarun-1.onrender.com"
+      "/api": "http://localhost:8000"
     }
   }
 });
